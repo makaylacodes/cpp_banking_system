@@ -78,7 +78,8 @@ void Account::depositAmount(int dep){
 
 }
 
-void Account::withdrawalAmount(){
+void Account::withdrawalAmount(int dep){
+    accDeposit -= dep;
 
 }
 
