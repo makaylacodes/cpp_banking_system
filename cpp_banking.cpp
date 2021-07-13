@@ -191,8 +191,8 @@ int main(){
 
 		cin.ignore();
 		cin.get();
-        
-	}while(ch!='8');
+
+	}while(character !='8');
 
     return 0;
 }
@@ -219,8 +219,7 @@ void displayInfo(int x){
 
 //Will display error message if the file is not opened
     if (!inFile){
-        cout << "\nThe file could not be opened. Please press a 
-        key to continue\n";
+        cout << "\nThe file could not be opened. Please press a key to continue\n";
 
         return;
     }
@@ -238,7 +237,7 @@ void displayInfo(int x){
     inFile.close();
 
     if (flag == false){
-        cout << "\nThe account number does not exist\n"
+        cout << "\nThe account number does not exist\n";
     }
 
 
@@ -255,8 +254,7 @@ void changeAccount(int x){
 //Will display error message if the file is not opened
 	if(!File)
 	{
-		cout<<"\nThe file could not be opened. Please press a 
-        key to continue\n";
+		cout<<"\nThe file could not be opened. Please press a key to continue\n";
 		return;
 	}
 
@@ -302,8 +300,7 @@ void deleteAccount(int x){
 
 	if(!inFile)
 	{
-		cout<<"\nThe file could not be opened. Please press a 
-        key to continue\n";
+		cout<<"\nThe file could not be opened. Please press a key to continue\n";
 		return;
 	}
 
@@ -333,8 +330,7 @@ void displayAll(){
 	inFile.open("account.data",ios::binary);
 	if(!inFile)
 	{
-		cout<<"\nThe file could not be opened. Please press a 
-        key to continue\n";
+		cout<<"\nThe file could not be opened. Please press a key to continue\n";
 		return;
 	}
 	cout<<"\n\n\t\tACCOUNT INFORMATION\n\n";
@@ -361,14 +357,13 @@ void depositOrWithdraw(int x, int option){
 
 	if(!File)
 	{
-		cout<<"\nThe file could not be opened. Please press a 
-        key to continue\n";
+		cout<<"\nThe file could not be opened. Please press a key to continue\n";
 		return;
 	}
 	while(!File.eof() && found==false)
 	{
 		File.read(reinterpret_cast<char *> (&account), sizeof(Account));
-		if(account.returnNum()==n)
+		if(account.returnNum() == x)
 		{
 			account.displayAccount();
 
@@ -377,7 +372,7 @@ void depositOrWithdraw(int x, int option){
 				cout<<"\n\n\tTHE DEPOSIT AMOUNT ";
 				cout<<"\n\nEnter the amount to be deposited: ";
 				cin>>amount;
-				account.dep(amount);
+				account.depositAmount(amount);
 			}
 
 			if(option==2)
@@ -390,7 +385,7 @@ void depositOrWithdraw(int x, int option){
 				if((bal<500 && account.returnType()=='S') || (bal<1000 && account.returnType()=='C'))
 					cout<<"Insufficient balance";
 				else
-					account.withdrawalAmount(Amount);
+					account.withdrawalAmount(amount);
 			}
 
 			int pos=(-1)*static_cast<int>(sizeof(account));
