@@ -9,8 +9,8 @@ class Account {
 
     //Attributes
     int accNum; //This variable will hold the account number
-    int deposit; //This variable will hold the amount of the deposit
-    char type; //This variable will hold the type of account
+    int accDeposit; //This variable will hold the amount of the deposit
+    char accType; //This variable will hold the type of account
     char accName[60]; //This variable hold the name of the account holder
 
     //Methods
@@ -30,6 +30,22 @@ public:
 };
 
 void Account::newAccount(){
+    cout << "Enter the account number: ";
+    cin >> accNum;
+
+    cout << "\nEnter the name of the account holder: ";
+    cin.ignore();
+    cin.getline(accName, 60);
+
+    cout << "\nEnter the type of account (C for checkings/S for savings): ";
+    cin >> accType;
+    accType = toupper(accType);
+
+    cout << "\nEnter the initial amount: ";
+    cin >> accDeposit;
+
+    cout << "\nAccount Created!\n\n";
+
 
 }
 
