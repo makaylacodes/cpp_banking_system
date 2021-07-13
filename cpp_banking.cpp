@@ -121,3 +121,36 @@ int main(){
 
     return 0;
 }
+
+// This function will write to the file
+void writeAccount(){
+    Account account;
+    ofstream outFile; //The file OutFile is created and opened
+
+    outFile.open("account.data", ios::binary|ios::app);
+    account.newAccount();
+    outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account) );
+
+    outFile.close(); //The file has been closed
+
+}
+
+
+void displayInfo(int){
+    
+}
+void changeAccount(int){
+    
+}
+void deleteAccount(int){
+    
+}
+void displayAll(){
+    
+}
+void depositOrWithdraw(){
+    
+}
+void openingPage(){
+    
+}
