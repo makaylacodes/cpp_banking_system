@@ -129,15 +129,44 @@ void writeAccount(){
 
     outFile.open("account.data", ios::binary|ios::app);
     account.newAccount();
-    outFile.write(reinterpret_cast<char *> (&ac), sizeof(Account) );
+    outFile.write(reinterpret_cast<char *> (&account), sizeof(account) );
 
     outFile.close(); //The file has been closed
 
 }
 
-
+//This function will display the account data
 void displayInfo(int){
-    
+    Account account;
+    bool flag = false;
+    ifstream inFile;
+    inFile.open("account.data",ios::binary);
+
+//Will display error message if the file is not opened
+    if (!inFile){
+        cout << "\nThe file could not be opened. Please press a 
+        key to continue\n";
+
+        return;
+    }
+
+    cout << "\nBalance Information\n";
+
+    while(inFile.read(reinterpret_cast<char *> (&account), sizeof(account) ) ){
+
+        if (account.retacno() == n){
+            account.displayAccount();
+            flag = true;
+        }
+    }
+
+    inFile.close();
+
+    if (flag == false){
+        cout << "\nThe account number does not exist\n"
+    }
+
+
 }
 void changeAccount(int){
     
