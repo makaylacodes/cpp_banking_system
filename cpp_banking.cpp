@@ -154,7 +154,7 @@ void displayInfo(int x){
 
     while(inFile.read(reinterpret_cast<char *> (&account), sizeof(Account) ) ){
 
-        if (account.retacno() == x){
+        if (account.returnNum() == x){
             account.displayAccount();
             flag = true;
         }
@@ -189,15 +189,23 @@ void changeAccount(int x){
 	while(!File.eof() && found==false)
 	{
 		File.read(reinterpret_cast<char *> (&account), sizeof(Account));
-		if(account.retacno()==n)
+
+		if(account.returnNum() == x)
 		{
 			account.displayAccount();
+
 			cout<<"\n\nEnter The New Details of The Account: \n";
+
 			account.updateInfo();
+
 			int pos=(-1)*static_cast<int>(sizeof(Account));
+
 			File.seekp(pos,ios::cur);
+
 			File.write(reinterpret_cast<char *> (&account), sizeof(Account));
+
 			cout<<"\nAccount Updated\n";
+
 			found=true;
 		  }
 	}
@@ -206,13 +214,43 @@ void changeAccount(int x){
 
 	if(found==false){
 		cout<<"\nThe account does not exist\n";
-        }
+    }
 }
 
 
-void deleteAccount(int){
-    
+void deleteAccount(int x){
+    Account account;
+	ifstream inFile;
+	ofstream outFile;
+
+	inFile.open("account.data",ios::binary);
+
+	if(!inFile)
+	{
+		cout<<"\nThe file could not be opened. Please press a 
+        key to continue\n";
+		return;
+	}
+
+	outFile.open("Temp.data",ios::binary);
+	inFile.seekg(0,ios::beg);
+
+	while(inFile.read(reinterpret_cast<char *> (&account), sizeof(Account)))
+	{
+		if(account.returnNum()! = x)
+		{
+			outFile.write(reinterpret_cast<char *> (&account), sizeof(Account));
+		}
+	}
+
+	inFile.close();
+	outFile.close();
+
+	remove("account.data");
+	rename("Temp.data","account.data");
+	cout<<"\nAccount deleted\n";
 }
+
 void displayAll(){
     
 }
