@@ -83,7 +83,9 @@ void Account::withdrawalAmount(int dep){
 
 }
 
-void Account::report(){
+void Account::report() const{
+    cout << accNum << setw(10) << " " << accName << setw(10) 
+    << " " << accType << setw(6) << accDeposit << endl;
 
 }
 
