@@ -104,6 +104,18 @@ char Account::returnType() const {
 
 }
 
+// END OF THE ACCOUNT CLASS DEFINITIONS
+
+
+//FUNCTION DECLARATIONS
+void writeAccount(); // This function will write to the file
+void displayInfo(int); //This function will display the account data
+void changeAccount(int); //This function will change the data on the file
+void deleteAccount(int); //This function will delete an account from the file
+void displayAll(); //This function will display all account data
+void depositOrWithdraw(); //This function will deposit or withdraw from an account
+void openingPage(); //This is the first screen the user gets
+
 int main(){
     
 
