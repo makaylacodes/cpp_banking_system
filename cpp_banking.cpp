@@ -58,6 +58,18 @@ void Account::displayAccount() const{
 }
 
 void Account::updateInfo(){
+    cout << "Account Number: " << accNum << endl;
+
+    cout << "Change Account Holder Name: ";
+    cin.ignore();
+    cin.getline(accName, 60);
+
+    cout << "\nChange The Type of Account: ";
+    cin >> accType;
+    accType = toupper(accType);
+
+    cout << "\nChange Balance Amount: ";
+    cin >> accDeposit;
 
 }
 
