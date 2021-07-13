@@ -334,6 +334,13 @@ void depositOrWithdraw(int x, int option){
 		cout<<"\nAccount Not Found\n ";
     
 }
+
+//This is the first screen the user gets
 void openingPage(){
+    cout<<"\n\n\n\t  BANK";
+	cout<<"\n\n\tMANAGEMENT";
+	cout<<"\n\n\t  SYSTEM";
+	cout<<"\n\n\n\nMADE BY : Makayla Anderson-Tucker";
+	cin.get();
     
 }
