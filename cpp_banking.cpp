@@ -217,7 +217,7 @@ void changeAccount(int x){
     }
 }
 
-
+//This function will delete an account from the file
 void deleteAccount(int x){
     Account account;
 	ifstream inFile;
@@ -251,9 +251,30 @@ void deleteAccount(int x){
 	cout<<"\nAccount deleted\n";
 }
 
+//This function will display all account data
 void displayAll(){
+    Account account;
+	ifstream inFile;
+	inFile.open("account.data",ios::binary);
+	if(!inFile)
+	{
+		cout<<"\nThe file could not be opened. Please press a 
+        key to continue\n";
+		return;
+	}
+	cout<<"\n\n\t\tACCOUNT INFORMATION\n\n";
+	cout<<"====================================================\n";
+	cout<<"Account no.      Name         Type      Balance\n";
+	cout<<"====================================================\n";
+	while(inFile.read(reinterpret_cast<char *> (&account), sizeof(Account)))
+	{
+		account.report();
+	}
+	inFile.close();
     
 }
+
+
 void depositOrWithdraw(){
     
 }
