@@ -113,7 +113,7 @@ void displayInfo(int); //This function will display the account data
 void changeAccount(int); //This function will change the data on the file
 void deleteAccount(int); //This function will delete an account from the file
 void displayAll(); //This function will display all account data
-void depositOrWithdraw(); //This function will deposit or withdraw from an account
+void depositOrWithdraw(int, int); //This function will deposit or withdraw from an account
 void openingPage(); //This is the first screen the user gets
 
 int main(){
@@ -274,8 +274,64 @@ void displayAll(){
     
 }
 
+//This function will deposit or withdraw from an account
+void depositOrWithdraw(int x, int option){
 
-void depositOrWithdraw(){
+    int amount;
+	bool found=false;
+	Account account;
+
+	fstream File;
+	File.open("account.data", ios::binary|ios::in|ios::out);
+
+	if(!File)
+	{
+		cout<<"\nThe file could not be opened. Please press a 
+        key to continue\n";
+		return;
+	}
+	while(!File.eof() && found==false)
+	{
+		File.read(reinterpret_cast<char *> (&account), sizeof(Account));
+		if(account.returnNum()==n)
+		{
+			account.displayAccount();
+
+			if(option==1)
+			{
+				cout<<"\n\n\tTHE DEPOSIT AMOUNT ";
+				cout<<"\n\nEnter the amount to be deposited: ";
+				cin>>amount;
+				account.dep(amount);
+			}
+
+			if(option==2)
+			{
+				cout<<"\n\n\tTHE WITHDRAW AMOUNT ";
+				cout<<"\n\nEnter the amount to be withdraw: ";
+				cin>>amount;
+
+				int bal=account.returnDeposit()-amount;
+				if((bal<500 && account.returnType()=='S') || (bal<1000 && account.returnType()=='C'))
+					cout<<"Insufficient balance";
+				else
+					account.withdrawalAmount(Amount);
+			}
+
+			int pos=(-1)*static_cast<int>(sizeof(account));
+
+			File.seekp(pos,ios::cur);
+			File.write(reinterpret_cast<char *> (&account), sizeof(Account));
+			cout<<"\n\n\t Account Updated";
+
+			found=true;
+	       }
+         }
+
+	File.close();
+
+	if(found==false)
+		cout<<"\nAccount Not Found\n ";
     
 }
 void openingPage(){
