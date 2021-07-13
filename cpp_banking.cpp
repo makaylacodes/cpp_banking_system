@@ -89,15 +89,18 @@ void Account::report() const{
 
 }
 
-int Account::returnNum(){
+int Account::returnNum() const{
+    return accNum;
 
 }
 
-int Account::returnDeposit(){
+int Account::returnDeposit() const{
+    return accDeposit;
 
 }
 
-char Account::returnType(){
+char Account::returnType() const {
+    return accType;
 
 }
 
