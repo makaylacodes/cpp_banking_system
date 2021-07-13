@@ -29,7 +29,41 @@ public:
 
 };
 
+void Account::newAccount(){
 
+}
+
+void Account::displayAccount(){
+
+}
+
+void Account::updateInfo(){
+
+}
+
+void Account::depositAmount(){
+
+}
+
+void Account::withdrawalAmount(){
+
+}
+
+void Account::report(){
+
+}
+
+int Account::returnNum(){
+
+}
+
+int Account::returnDeposit(){
+
+}
+
+char Account::returnType(){
+
+}
 
 int main(){
     
