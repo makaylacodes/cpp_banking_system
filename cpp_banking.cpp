@@ -117,7 +117,82 @@ void depositOrWithdraw(int, int); //This function will deposit or withdraw from 
 void openingPage(); //This is the first screen the user gets
 
 int main(){
-    
+
+    char character;
+	int accountNumber;
+
+	openingPage();
+
+	do
+	{
+		system("cls");
+
+		cout<<"\n\n\n\tMAIN MENU";
+		cout<<"\n\n\t01. NEW ACCOUNT";
+		cout<<"\n\n\t02. DEPOSIT AMOUNT";
+		cout<<"\n\n\t03. WITHDRAW AMOUNT";
+		cout<<"\n\n\t04. BALANCE ENQUIRY";
+		cout<<"\n\n\t05. ALL ACCOUNT HOLDER LIST";
+		cout<<"\n\n\t06. CLOSE AN ACCOUNT";
+		cout<<"\n\n\t07. UPDATE AN ACCOUNT";
+		cout<<"\n\n\t08. EXIT";
+		cout<<"\n\n\tSelect Your Option (1-8) ";
+
+		cin>>character;
+
+		system("cls");
+
+		switch(character){
+
+		case '1':
+			writeAccount();
+			break;
+
+		case '2':
+			cout<<"\n\n\tEnter The account number : "; 
+            cin >> accountNumber;
+			depositOrWithdraw(accountNumber, 1);
+			break;
+
+		case '3':
+			cout<<"\n\n\tEnter The account number : "; 
+            cin >> accountNumber;
+			depositOrWithdraw(accountNumber, 2);
+			break;
+
+		case '4': 
+			cout<<"\n\n\tEnter The account number : "; 
+            cin>> accountNumber;
+			displayInfo(accountNumber);
+			break;
+
+		case '5':
+			displayAll();
+			break;
+
+		case '6':
+			cout<<"\n\n\tEnter The account number : "; 
+            cin >> accountNumber;
+			deleteAccount(accountNumber);
+			break;
+
+		 case '7':
+			cout<<"\n\n\tEnter The account number : "; 
+            cin >> accountNumber;
+			changeAccount(accountNumber);
+			break;
+
+		 case '8':
+			cout<<"\n\n\tThanks for using bank managemnt system!";
+			break;
+		 default :cout<<"\a";
+
+		}
+
+		cin.ignore();
+		cin.get();
+        
+	}while(ch!='8');
 
     return 0;
 }
