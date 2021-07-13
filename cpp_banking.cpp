@@ -129,14 +129,14 @@ void writeAccount(){
 
     outFile.open("account.data", ios::binary|ios::app);
     account.newAccount();
-    outFile.write(reinterpret_cast<char *> (&account), sizeof(account) );
+    outFile.write(reinterpret_cast<char *> (&account), sizeof(Account) );
 
     outFile.close(); //The file has been closed
 
 }
 
 //This function will display the account data
-void displayInfo(int){
+void displayInfo(int x){
     Account account;
     bool flag = false;
     ifstream inFile;
@@ -152,9 +152,9 @@ void displayInfo(int){
 
     cout << "\nBalance Information\n";
 
-    while(inFile.read(reinterpret_cast<char *> (&account), sizeof(account) ) ){
+    while(inFile.read(reinterpret_cast<char *> (&account), sizeof(Account) ) ){
 
-        if (account.retacno() == n){
+        if (account.retacno() == x){
             account.displayAccount();
             flag = true;
         }
@@ -168,9 +168,48 @@ void displayInfo(int){
 
 
 }
-void changeAccount(int){
-    
+
+//This function will change the data on the file
+void changeAccount(int x){
+    bool found = false;
+    Account account;
+
+    fstream File;
+	File.open("account.data",ios::binary|ios::in|ios::out);
+
+//Will display error message if the file is not opened
+	if(!File)
+	{
+		cout<<"\nThe file could not be opened. Please press a 
+        key to continue\n";
+		return;
+	}
+
+
+	while(!File.eof() && found==false)
+	{
+		File.read(reinterpret_cast<char *> (&account), sizeof(Account));
+		if(account.retacno()==n)
+		{
+			account.displayAccount();
+			cout<<"\n\nEnter The New Details of The Account: \n";
+			account.updateInfo();
+			int pos=(-1)*static_cast<int>(sizeof(Account));
+			File.seekp(pos,ios::cur);
+			File.write(reinterpret_cast<char *> (&account), sizeof(Account));
+			cout<<"\nAccount Updated\n";
+			found=true;
+		  }
+	}
+
+	File.close();
+
+	if(found==false){
+		cout<<"\nThe account does not exist\n";
+        }
 }
+
+
 void deleteAccount(int){
     
 }
