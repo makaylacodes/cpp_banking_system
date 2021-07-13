@@ -16,7 +16,7 @@ class Account {
     //Methods
 public:
     void newAccount(); //This function will create a new account
-    void displayAccount(); //This function will display account info
+    void displayAccount() const; //This function will display account info
     void updateInfo(); //This function will add new data to account
     void depositAmount(int); //This function will take deposit amount and add to balance
     void withdrawalAmount(int); //This function will take withdrawal amount and subtract from balance
@@ -49,7 +49,11 @@ void Account::newAccount(){
 
 }
 
-void Account::displayAccount(){
+void Account::displayAccount() const{
+    cout << "Account Number: " << accNum << endl;
+    cout << "Account Holder: " << accName << endl;
+    cout << "Type of Account: " << accType << endl;
+    cout << "Available Balance: " << accDeposit << endl;
 
 }
 
