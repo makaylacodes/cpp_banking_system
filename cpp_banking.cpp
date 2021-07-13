@@ -73,7 +73,8 @@ void Account::updateInfo(){
 
 }
 
-void Account::depositAmount(){
+void Account::depositAmount(int dep){
+    accDeposit += dep;
 
 }
 
